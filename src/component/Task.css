@@ -1,0 +1,27 @@
+button.cross {
+    color: darkred;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button.cross:hover, button.tick:hover{
+    cursor: pointer;
+}
+
+button.cross i, button.tick i {
+    background-color: transparent;
+}
+
+button.tick {
+    color: green;
+    background-color: transparent;
+    border: none;
+    font-weight: bold;
+    font-size: 20px;
+}
+
+button.cross1 {
+    font-size: 16px;
+}
