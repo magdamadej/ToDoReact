@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import './App.css';
 import AddTask from '../src/component/AddTask';
 import TaskList from '../src/component/TaskList';
+import axios from 'axios';
 // import ListContainer from './container/ListContainer';
 
 class App extends Component {
@@ -11,24 +12,32 @@ class App extends Component {
   state = {
     //wszystkie zadania znajdują się w tablicy, a pojedyncze zadanie będzie osobnym obiektem
     tasks: [
-      {
-        id: 0,
-        text: 'Zrobić pranie',
-        date: '2019-02-15',
-        important: false,
-        active: true,
-        finishDate: null
-      },
-      {
-        id: 1,
-        text: 'Kupić bilety na samolot',
-        date: '2019-02-15',
-        important: true,
-        active: true,
-        finishDate: null
-      },
+      // {
+      //   id: 0,
+      //   text: 'Zrobić pranie',
+      //   date: '2019-02-15',
+      //   important: false,
+      //   active: true,
+      //   finishDate: null
+      // },
+      // {
+      //   id: 1,
+      //   text: 'Kupić bilety na samolot',
+      //   date: '2019-02-15',
+      //   important: true,
+      //   active: true,
+      //   finishDate: null
+      // },
     ]
   }
+
+  componentDidMount() {
+    axios.get('http://195.181.210.249:3000/todo/')
+      .then(res => {
+        this.setState({ tasks: res.data });
+      })
+  }
+
 
   deleteTask = (id) => {
 
@@ -75,8 +84,14 @@ class App extends Component {
     return (
       <div className="App">
         <div className="ContainerApp">
+
           <AddTask add={this.addTask} />
-          <TaskList tasks={this.state.tasks} delete={this.deleteTask} change={this.changeTaskStatus} />
+
+          {this.state.tasks.map(el =>
+            <TaskList key={el.id} tasks={this.state.tasks} delete={this.deleteTask} change={this.changeTaskStatus} />
+
+
+          )}
         </div>
       </div>
     );

@@ -7,7 +7,14 @@ const Task = (props) => {
         color: 'darkred',
     }
 
-    const { text, date, id, active, important, finishDate } = props.task; //pobieranie
+    const {
+        text,
+        date,
+        id,
+        active,
+        important,
+        finishDate
+    } = props.task; //pobieranie
 
     if (active) {
         return (

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './AddTask.css';
+import Axios from 'axios';
 class AddTask extends Component {
 
     minDate = new Date().toISOString().slice(0, 10);
@@ -45,14 +46,23 @@ class AddTask extends Component {
         }
     }
 
+
+
+    handleChange = event => this.setState({ text: event.target.value });
+
+    handleSubmit = event => {
+        event.preventDefault();
+
+        Axios.post('http://195.181.210.249:3000/todo/')
+    }
+
     render() {
         let maxDate = this.minDate.slice(0, 4) * 1 + 1;
-        // console.log(maxDate);
         maxDate = maxDate + "-12-31";
 
         return (
-            <div className="form">
-                <input type="text" placeholder="dodaj zadanie" value={this.state.text} onChange={this.handleText} />
+            <div className="form" onSubmit={this.handleSubmit}>
+                <input type="text" placeholder="dodaj zadanie" name="title" value={this.state.title} onChange={this.handleChange} />
                 <input type="checkbox" checked={this.state.checked} id="important" onChange={this.handleCheckbox} />
                 <label htmlFor="important">Priorytet</label><br />
                 <label htmlFor="date">Do kiedy zrobić</label>
