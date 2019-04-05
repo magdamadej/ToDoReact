@@ -53,7 +53,11 @@ class AddTask extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        Axios.post('http://195.181.210.249:3000/todo/')
+        Axios.post('http://195.181.210.249:3000/todo/',{
+            title:'',
+            author: 'Magda'
+        })
+        
     }
 
     render() {
@@ -61,8 +65,8 @@ class AddTask extends Component {
         maxDate = maxDate + "-12-31";
 
         return (
-            <div className="form" onSubmit={this.handleSubmit}>
-                <input type="text" placeholder="dodaj zadanie" name="title" value={this.state.title} onChange={this.handleChange} />
+            <div className="form" onSubmit={this.handleSubmit.bind(this)}>
+                <input type="text" placeholder="dodaj zadanie" name="title" value={this.state.title} onChange={this.handleChange.bind(this)} />
                 <input type="checkbox" checked={this.state.checked} id="important" onChange={this.handleCheckbox} />
                 <label htmlFor="important">Priorytet</label><br />
                 <label htmlFor="date">Do kiedy zrobić</label>
