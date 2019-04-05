@@ -31,14 +31,6 @@ class App extends Component {
     ]
   }
 
-  // componentDidMount() {
-  //   axios.get('http://195.181.210.249:3000/todo/')
-  //     .then(res => {
-  //       this.setState({ tasks: res.data });
-  //     })
-  // }
-
-
   getData() {
     axios.get("http://195.181.210.249:3000/todo/")
       .then(res => {
