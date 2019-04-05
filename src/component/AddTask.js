@@ -53,11 +53,11 @@ class AddTask extends Component {
     handleSubmit = event => {
         event.preventDefault();
 
-        Axios.post('http://195.181.210.249:3000/todo/',{
-            title:'',
+        Axios.post('http://195.181.210.249:3000/todo/', {
+            title: '',
             author: 'Magda'
         })
-        
+            .then(() => this.getData());
     }
 
     render() {
