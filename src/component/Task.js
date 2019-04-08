@@ -8,7 +8,7 @@ const Task = (props) => {
     }
 
     const {
-        text,
+        title,
         date,
         id,
         active,
@@ -22,7 +22,7 @@ const Task = (props) => {
                 {/* pobranie elementu */}
                 <p>
                     {/* jeżeli important=true (zaznaczony priorytet), to pobiera style:darkred */}
-                    <strong style={important ? style : null}>{text}</strong> - zrobić do <span>{date} </span>
+                    <strong style={important ? style : null}>{title}</strong> - zrobić do <span>{date} </span>
                     <button className="tick" onClick={() => props.change(id)}>
                         <i class="fas fa-check"></i>
                     </button>
@@ -38,7 +38,7 @@ const Task = (props) => {
         return (
             <div>
                 <p>
-                    <strong>{text}</strong><em> (zrobić do {date}) </em>
+                    <strong>{title}</strong><em> (zrobić do {date}) </em>
                     <br /> - zadanie wykonane dnia: <span> {finish}</span>
                     <button className="cross cross1" onClick={() => props.delete(id)}>
                         Usuń

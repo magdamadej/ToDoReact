@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './AddTask.css';
-import Axios from 'axios';
+import axios from 'axios';
 class AddTask extends Component {
 
     minDate = new Date().toISOString().slice(0, 10);
@@ -28,6 +28,7 @@ class AddTask extends Component {
         })
     }
 
+    //czyszczenie pola dodaj zadanie po dodaniu zadania
     handleClick = () => {
 
 
@@ -36,7 +37,7 @@ class AddTask extends Component {
             const add = this.props.add(text, date, checked);
             if (add) {
                 this.setState({
-                    text: '',
+                    title: '',
                     checked: false,
                     date: this.minDate
                 })
@@ -46,16 +47,12 @@ class AddTask extends Component {
         }
     }
 
-
-
     handleChange = event => this.setState({ text: event.target.value });
 
-    handleSubmit = event => {
-        event.preventDefault();
-
-        Axios.post('http://195.181.210.249:3000/todo/', {
-            title: '',
-            author: 'Magda'
+    handleSubmit(newTask) {
+        axios.post("http://195.181.210.249:3000/todo/", {
+            title: newTask.title,
+            author: "Magda",
         })
             .then(() => this.getData());
     }
