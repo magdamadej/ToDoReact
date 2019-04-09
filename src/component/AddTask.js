@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import './AddTask.css';
-import axios from 'axios';
 class AddTask extends Component {
 
     minDate = new Date().toISOString().slice(0, 10);
@@ -30,11 +29,9 @@ class AddTask extends Component {
 
     //czyszczenie pola dodaj zadanie po dodaniu zadania
     handleClick = () => {
-
-
-        const { text, checked, date } = this.state;
+        const { text, checked, date } = this.state;  //{text, checked, date}
         if (text.length > 2) {
-            const add = this.props.add(text, date, checked);
+            const add = this.props.add(text, date, checked); //(text, date, checked)
             if (add) {
                 this.setState({
                     title: '',
@@ -49,20 +46,12 @@ class AddTask extends Component {
 
     handleChange = event => this.setState({ text: event.target.value });
 
-    handleSubmit(newTask) {
-        axios.post("http://195.181.210.249:3000/todo/", {
-            title: newTask,
-            author: "Magda",
-        })
-            .then(() => this.getData());
-    }
-
     render() {
         let maxDate = this.minDate.slice(0, 4) * 1 + 1;
         maxDate = maxDate + "-12-31";
 
         return (
-            <div className="form" onSubmit={this.handleSubmit.bind(this)}>
+            <div className="form">
                 <input type="text" placeholder="dodaj zadanie" name="title" value={this.state.title} onChange={this.handleChange.bind(this)} />
                 <input type="checkbox" checked={this.state.checked} id="important" onChange={this.handleCheckbox} />
                 <label htmlFor="important">Priorytet</label><br />
