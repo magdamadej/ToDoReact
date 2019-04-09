@@ -51,7 +51,7 @@ class AddTask extends Component {
 
     handleSubmit(newTask) {
         axios.post("http://195.181.210.249:3000/todo/", {
-            title: newTask.title,
+            title: newTask,
             author: "Magda",
         })
             .then(() => this.getData());
